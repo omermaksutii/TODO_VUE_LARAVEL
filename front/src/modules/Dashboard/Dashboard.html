@@ -1,0 +1,60 @@
+<adminLayout>
+  <div class="page-heading">
+    <h3>TASKS</h3>
+  </div>
+  <div class="page-content">
+    <section class="section">
+      <div class="row" id="table-hover-row">
+          <div class="col-12">
+              <div class="card">
+                  <div class="card-content">
+                      <div class="card-body d-flex justify-content-between">
+                        <div class="form-group position-relative has-icon-left">
+                          <input type="text" class="form-control" placeholder="Input with icon left">
+                          <div class="form-control-icon">
+                              <i class="bi bi-person"></i>
+                          </div>
+                      </div>
+                        <button @click="toggleModalAdd"  class="btn btn-primary rounded-pill"> ADD </button>
+                      </div>
+                      <div class="table-responsive">
+                          <table class="table table-hover mb-0">
+                              <thead>
+                                  <tr>
+                                      <th>ID</th>
+                                      <th>Title</th>
+                                      <th>Description</th>
+                                      <th>Status</th>
+                                      <th>Created</th>
+                                      <th>Action</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr v-for="(task, index) in tasks" v-bind:key="task.id">
+                                      <td class="text-bold-500">{{task.id}}</td>
+                                      <td>{{task.title}}</td>
+                                      <td class="text-bold-500">{{task.description}}</td>
+                                      <td v-if="(task.status == 1)"><span class="badge bg-success">DONE</span></td>
+                                      <td v-if="(task.status == 0)"><span class="badge bg-danger">TO DO</span></td>
+                                      <td>{{task.created_at}}</td>
+                                      
+                                      <td>
+                                          <div class="buttons">
+                                            <a onclick="delete(id)" class="btn btn-danger rounded-pill">DELETE</a>
+                                            <a href="" class="btn btn-primary rounded-pill">EDIT</a>
+                                          </div>
+                                      </td>
+                                  </tr>
+
+                                 
+                              </tbody>
+                          </table>
+                      </div>
+                      <modalAddTask v-if="showModalAdd" @toggleModal="toggleModalAdd"/>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  </div>
+</adminLayout>
