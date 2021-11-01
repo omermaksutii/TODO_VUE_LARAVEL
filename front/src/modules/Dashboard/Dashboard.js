@@ -1,26 +1,28 @@
 import adminLayout from '@/layouts/Admin';
 import httpAxios from '@/utils/http-axios';
-import modalAddTask from '/src/modules/Dashboard/modals/add'
-
-
+import modalAddTask from '/src/modules/Dashboard/modals/add';
+import modalEditTask from '/src/modules/Dashboard/modals/edit';
 
 export default {
   name: 'Dashboard',
   components: {
     adminLayout,
-    modalAddTask
+    modalAddTask,
+    modalEditTask,
   },
   data() {
     return {
       tasks: [],
       showModalAdd: false,
-
+      showModalEdit: false,
+      oneRowData: 0,
+      search: '',
     };
   },
   mounted() {
     this.getTasks();
     // console.log(this.tasks)
-},
+  },
   methods: {
     getTasks() {
       const self = this;
@@ -31,12 +33,19 @@ export default {
         self.tasks = response.data.rows;
       });
     },
-    delete(e){
+    delete(e) {
       alert(e);
     },
-    toggleModalAdd(){
+    modalEdit(e) {
+      let self = this;
+      self.oneRowData = e;
+      this.showModalEdit = !this.showModalEdit;
+    },
+    toggleModalAdd() {
       this.showModalAdd = !this.showModalAdd;
+    },
+    toggleModalEdit() {
+      this.showModalEdit = !this.showModalEdit;
+    },
   },
-  },
-  
 };

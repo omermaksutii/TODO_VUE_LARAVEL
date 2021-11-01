@@ -4,7 +4,7 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
           <div class="modal-header bg-primary">
-            <h5 class="modal-title white" id="myModalLabel160">ADD TASK</h5>
+            <h5 class="modal-title white" id="myModalLabel160">ADD USER</h5>
             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
               <i data-feather="x"></i>
             </button>
@@ -13,12 +13,24 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <label for="basicInput">Title</label>
-                  <input type="text" class="form-control" v-model="title" placeholder="Enter Title" />
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label for="basicInput">Full Name</label>
+                      <input type="text" class="form-control" v-model="fullname" placeholder="Enter FullName" />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="basicInput">Full Name</label>
+                      <input type="text" class="form-control" v-model="fullname" placeholder="Enter FullName" />
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                  <textarea class="form-control" v-model="description" rows="3"></textarea>
+                <div class="form-group">
+                  <label for="basicInput">Email</label>
+                  <input type="text" class="form-control" v-model="email" placeholder="Enter Email" />
+                </div>
+                <div class="form-group">
+                  <label for="basicInput">Password</label>
+                  <input type="password" class="form-control" v-model="password" placeholder="Enter Password" />
                 </div>
               </div>
             </div>
@@ -30,7 +42,7 @@
             </button>
             <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal">
               <i class="bx bx-check d-block d-sm-none"></i>
-              <span class="d-none d-sm-block" @click="addTask()">Add</span>
+              <span class="d-none d-sm-block" @click="addUser()">Add</span>
             </button>
           </div>
         </div>
@@ -45,9 +57,10 @@ import httpAxios from '@/utils/http-axios';
 export default {
   data() {
     return {
-      title: '',
-      description: '',
-      status: 0,
+      fname: '',
+      lname: '',
+      email: '',
+      password: '',
     };
   },
 
@@ -60,16 +73,12 @@ export default {
     toggleModal() {
       this.$emit('toggleModal');
     },
-    addTask() {
-      //   const formData = new FormData();
-      //    formData.append(title, this.title);
-      //    formData.append(description, this.description);
+    addUser() {
       const self = this;
-
       httpAxios({
-        url: '/tasks',
+        url: '/users',
         method: 'POST',
-        data: { title: self.title, description: self.description, status: self.status },
+        data: { first_name: self.fname, last_name: self.lname, email: self.email, password: self.password },
       }).then(async () => {
         self.$router.go({ name: 'admin.dashboard' });
       });
