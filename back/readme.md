@@ -1,9 +1,8 @@
 ### Introduction
 
-**Clean-Laravel-Api** offers you to do modern API development in Laravel. Project has also support for new versions of Laravel.
+**TODO_VUE_LARAVEL** offers you to do modern API development in Laravel. Project has also support for new versions of Laravel.
 
-**Clean-Laravel-Api** comes included with...
-* Support for [Laravel 7.0](https://github.com/gentritabazi01/Clean-Laravel-Api/tree/Laravel-7) and [Laravel 8.0](https://github.com/gentritabazi01/Clean-Laravel-Api/tree/Laravel-8).
+**TODO_VUE_LARAVEL** comes included with...
 * Laravel Passport for OAuth Authentication, including a proxy for password and refresh-token grants.
 * A new directory structure optimized for separating infrastructure and domain code. Groups your controllers, models, etc. by resource-type. 
 * A modern exception handler for APIs.
@@ -20,7 +19,7 @@
 ### Automatic Installation
 
 ```bash
-git clone https://github.com/gentritabazi01/Clean-Laravel-Api && cd Clean-Laravel-Api && sh ./scripts/install.sh
+git clone https://github.com/omermaksutii/TODO_VUE_LARAVEL/ && cd TODO_VUE_LARAVEL && sh ./scripts/install.sh
 ```
 
 This will:
@@ -37,7 +36,7 @@ Now you just need to update your `.env` file as needed and install passport (che
 
 First clone the repository.
 ```bash
-git clone https://github.com/gentritabazi01/Clean-Laravel-Api
+git clone https://github.com/omermaksutii/TODO_VUE_LARAVEL
 ```
 
 Install dependencies.
@@ -89,7 +88,7 @@ You can quickly test if the authentication works by creating an user using the i
 
 ```bash
 php artisan users:add {first_name} {last_name} {email} {password}
-Example: php artisan users:add Gentrit Abazi gentritabazi01@gmail.com mypassword
+Example: php artisan users:add Omer Maksuti maksutiiomer@gmail.com mypassword
 ```
 
 Now serve your application and try to request a token using cURL
@@ -98,7 +97,7 @@ Now serve your application and try to request a token using cURL
 php artisan serve
 curl -X POST http://localhost:8000/login -H 'Content-Type:application/json' -d '
 {
-    "email":"gentritabazi01@gmail.com",
+    "email":"maksutiiomer@gmail.com",
     "password":"mypassword"
 }'
 ```
@@ -118,7 +117,7 @@ curl http://localhost:8000/users -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhb
 This should return a response like so
 
 ```json
-{"users":[{"id":1,"first_name":"Gentrit","last_name":"Abazi","email":"gentritabazi01@gmail.com","name":"Gentrit Abazi"}]}
+{"users":[{"id":1,"first_name":"Omer","last_name":"Maksuti","email":"maksutiiomer@gmail.com","name":"Omer Maksuti"}]}
 ```
 
 You can refresh a new token by requesting `POST /login/refresh` and logout using `POST /logout`.
